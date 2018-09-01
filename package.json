@@ -16,5 +16,8 @@
   "description": "Plain text ND syntax",
   "devDependencies": {
     "tree-sitter-cli": "^0.13.8"
+  },
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build"
   }
 }

@@ -11,21 +11,27 @@ const PREC = {
 module.exports = grammar({
     name: "nd",
 
+    extras: $ => [$.comment, /\s+/],
+
     rules: {
-        program: repeat(),
+        block: $ => repeat($.expression),
 
-        comment: seq("#", /.*/),
+        comment: $ => token(seq("#", /.*/)),
 
-        expression: choice(
+        expression: $ => seq(repeat1($.term), "\n"),
 
+        term: $ => choice(
+            "foo",
+            $.and,
+            $.or
         ),
 
         and: $ => prec.left(PREC.AND,
-            seq($.expression, $._and_operator, $.expression)
+            seq($.term, $._and_operator, $.term)
         ),
 
         or: $ => prec.left(PREC.OR,
-            seq($.expression, $._or_operator, $.expression)
+            seq($.term, $._or_operator, $.term)
         ),
 
 

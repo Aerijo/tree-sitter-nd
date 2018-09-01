@@ -1,0 +1,9 @@
+====
+Check
+====
+
+foo ^ foo
+
+---
+
+(block (expression (term (and (term) (term)))))
