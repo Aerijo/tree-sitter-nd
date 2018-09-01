@@ -7,11 +7,14 @@
     "url": ""
   },
   "keywords": [
-      "tree-sitter",
-      "natural-deduction",
-      "nd"
+    "tree-sitter",
+    "natural-deduction",
+    "nd"
   ],
   "license": "MIT",
   "name": "tree-sitter-nd",
-  "description": "Plain text ND syntax"
+  "description": "Plain text ND syntax",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.13.8"
+  }
 }
