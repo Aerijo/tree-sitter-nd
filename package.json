@@ -9,6 +9,7 @@
   "keywords": [
     "tree-sitter",
     "natural-deduction",
+    "fitch",
     "nd"
   ],
   "license": "MIT",

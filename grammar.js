@@ -12,7 +12,15 @@ const PREC = {
 module.exports = grammar({
   name: "nd",
 
-  extras: $ => [$.comment, /\s+/],
+  extras: $ => [$.comment, /\s/],
+
+  // externals: $ => [
+  //   $.function
+  // ],
+  //
+  // conflicts: $ => [
+  //   [$.function, $.forall]
+  // ],
 
   rules: {
     block: $ => repeat($.expression),
@@ -28,11 +36,15 @@ module.exports = grammar({
       $.and,
       $.or,
       $.implies,
-      $.iff
+      $.iff,
+      $.forall,
+      $.exists,
+      $.true,
+      $.false
     ),
 
     function: $ => prec.right(PREC.FUNCTION,
-      seq($.function_name, "(", $._term, ")")
+      seq($.function_name, optional(seq("(", $._term, ")")))
     ),
 
     not: $ => prec.right(PREC.NOT,
@@ -55,7 +67,21 @@ module.exports = grammar({
       seq($._term, $._iff_operator, $._term)
     ),
 
-    function_name: $ => /[A-Z]\w*/,
+    forall: $ => prec.right(PREC.FORALL,
+      seq($._forall_operator, $.variable, $._universal_sep, $._term)
+    ),
+
+    exists: $ => prec.right(PREC.EXISTS,
+      seq($._exists_operator, $.variable, $._universal_sep, $._term)
+    ),
+
+    variable: $ => token(/[a-z]\w*/),
+
+    function_name: $ => token(/[A-Z]\w*/),
+
+    true: $ => "T",
+
+    false: $ => "F",
 
     _not_operator: $ => choice("-", "!", "~", "\u{00AC}"),
 
@@ -67,6 +93,11 @@ module.exports = grammar({
 
     _iff_operator: $ => choice("<->", "<=>", "\u{2194}", "\u{21D4}", "\u{2261}"),
 
-    variable: $ => /[a-z]\w*/
+    _forall_operator: $ => choice("A", "\u{2200}"),
+
+    _exists_operator: $ => choice("E", "\u{2203}"),
+
+    _universal_sep: $ => choice(".")
+
   }
 });

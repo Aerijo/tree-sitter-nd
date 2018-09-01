@@ -1,0 +1,117 @@
+====
+Function
+====
+
+A(x)
+B
+A(E x . P(x))
+
+---
+
+(block
+  (expression (function (function_name) (variable)))
+  (expression (function (function_name)))
+  (expression (function
+    (function_name)
+    (exists (variable) (function (function_name) (variable)))
+    )
+  )
+)
+
+====
+Not
+====
+
+-x
+!x
+~x
+¬x
+
+---
+
+(block
+  (expression (not (variable)))
+  (expression (not (variable)))
+  (expression (not (variable)))
+  (expression (not (variable)))
+)
+
+====
+And
+====
+
+x ^ y
+x & y
+x ∧ y
+
+---
+
+(block
+  (expression (and (variable) (variable)))
+  (expression (and (variable) (variable)))
+  (expression (and (variable) (variable)))
+)
+
+
+====
+Or
+====
+
+x _ y
+x | y
+x ∨ y
+
+---
+
+(block
+  (expression (or (variable) (variable)))
+  (expression (or (variable) (variable)))
+  (expression (or (variable) (variable)))
+)
+
+====
+Implies
+====
+
+x -> y
+x => y
+x → y
+x ⇒ y
+
+---
+
+(block
+  (expression (implies (variable) (variable)))
+  (expression (implies (variable) (variable)))
+  (expression (implies (variable) (variable)))
+  (expression (implies (variable) (variable)))
+)
+
+====
+Iff
+====
+
+x <-> y
+x <=> y
+x ↔ y
+x ⇔ y
+x ≡ y
+
+---
+
+(block
+  (expression (iff (variable) (variable)))
+  (expression (iff (variable) (variable)))
+  (expression (iff (variable) (variable)))
+  (expression (iff (variable) (variable)))
+  (expression (iff (variable) (variable)))
+)
+
+====
+Forall
+====
+
+A x . x
+∀ x . x
+
+---

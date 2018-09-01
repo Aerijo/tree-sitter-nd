@@ -89,7 +89,7 @@ x → y # \u{2192}
 x ⇒ y # \u{21D2}
 ```
 
-#### If and only if
+#### If and only if (Iff)
 
 ```nd
 x <-> y
@@ -103,12 +103,14 @@ x ≡ y # \u{2261}
 
 ```nd
 A x . P(x)
+∀ x . P(x) # \u{2200}
 ```
 
 #### Exists
 
 ```nd
 E x . P(x)
+∃ x . P(x) # \u{2203}
 ```
 
 ### Multiline
