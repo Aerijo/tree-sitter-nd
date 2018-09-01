@@ -1,0 +1,17 @@
+{
+  "author": "Benjamin Gray",
+  "main": "./index.js",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+      "tree-sitter",
+      "natural-deduction",
+      "nd"
+  ],
+  "license": "MIT",
+  "name": "tree-sitter-nd",
+  "description": "Plain text ND syntax"
+}
