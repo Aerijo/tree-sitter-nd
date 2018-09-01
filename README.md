@@ -1,4 +1,4 @@
-# Natural Deduction (ND) language syntax
+# Natural Deduction language syntax (Fitch style)
 
 ## About
 
@@ -44,6 +44,8 @@ b -> c
 
 ### Expressions
 
+The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <=> b => c`, we precedence to determine it means `a <=> (b => c)`.
+
 #### Function
 
 Any word starting with a capital letter will be considered a function.
@@ -59,7 +61,7 @@ Cat(b)
 -x
 !x
 ~x
-¬x # (\u{00AC})
+¬x # \u{00AC}
 ```
 
 #### And
@@ -67,15 +69,34 @@ Cat(b)
 ```nd
 x ^ y
 x & y
-x ∧ y # (\u{2227})
+x ∧ y # \u{2227}
 ```
 
 #### Or
 
 ```nd
-x | y
 x _ y
-x ∨ y # (\u{2228})
+x | y
+x ∨ y # \u{2228}
+```
+
+#### Implies
+
+```nd
+x -> y
+x => y
+x → y # \u{2192}
+x ⇒ y # \u{21D2}
+```
+
+#### If and only if
+
+```nd
+x <-> y
+x <=> y
+x ↔ y # \u{2194}
+x ⇔ y # \u{21D4}
+x ≡ y # \u{2261}
 ```
 
 #### Forall
@@ -154,7 +175,7 @@ A x . P(x) -> Q(x)
     Q(a)
 ```
 
-The guard lines up with the block it is local to. All guards must be declared at the top of their block. Multiple guards in a single block (if ever mecessary) can be defined like so. No particular method is enforced, so this is a stylistic choice (for now).
+The guard lines up with the block it is local to. All guards must be declared at the top of their block. Multiple guards in a single block (if ever necessary) can be defined like so. No particular method is enforced, so this is a stylistic choice (for now).
 
 ```nd
 A x . P(x) -> Q(x)

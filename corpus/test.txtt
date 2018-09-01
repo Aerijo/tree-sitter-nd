@@ -1,9 +1,43 @@
 ====
-Check
+Function
 ====
 
-foo ^ foo
+A
+A
 
 ---
 
-(block (expression (term (and (term) (term)))))
+
+
+====
+And
+====
+
+x ^ y
+x & y
+x ∧ y
+
+---
+
+(block
+  (expression (and (variable) (variable)))
+  (expression (and (variable) (variable)))
+  (expression (and (variable) (variable)))
+)
+
+
+====
+Or
+====
+
+x _ y
+x | y
+x ∨ y
+
+---
+
+(block
+  (expression (or (variable) (variable)))
+  (expression (or (variable) (variable)))
+  (expression (or (variable) (variable)))
+)
