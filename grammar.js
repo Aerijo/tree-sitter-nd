@@ -1,42 +1,47 @@
 const PREC = {
-    FUNCTION: 7,
-    NOT: 6,
-    AND: 5,
-    OR: 4,
-    IMPLIES: 3,
-    FORALL: 2,
-    EXISTS: 1
+  FUNCTION: 7,
+  NOT: 6,
+  AND: 5,
+  OR: 4,
+  IMPLIES: 3,
+  FORALL: 2,
+  EXISTS: 1
 };
 
 module.exports = grammar({
-    name: "nd",
+  name: "nd",
 
-    extras: $ => [$.comment, /\s+/],
+  extras: $ => [$.comment, /\s+/],
 
-    rules: {
-        block: $ => repeat($.expression),
+  rules: {
+    block: $ => repeat($.expression),
 
-        comment: $ => token(seq("#", /.*/)),
+    comment: $ => token(seq("#", /.*/)),
 
-        expression: $ => seq(repeat1($.term), "\n"),
+    expression: $ => seq(repeat1($.term), "\n"),
 
-        term: $ => choice(
-            "foo",
-            $.and,
-            $.or
-        ),
+    term: $ => choice(
+      "foo",
+      $.not,
+      $.and,
+      $.or
+    ),
 
-        and: $ => prec.left(PREC.AND,
-            seq($.term, $._and_operator, $.term)
-        ),
+    not: $ => prec.right(PREC.NOT,
+      seq($._not_operator, $.term)
+    ),
 
-        or: $ => prec.left(PREC.OR,
-            seq($.term, $._or_operator, $.term)
-        ),
+    and: $ => prec.left(PREC.AND,
+      seq($.term, $._and_operator, $.term)
+    ),
+
+    or: $ => prec.left(PREC.OR,
+      seq($.term, $._or_operator, $.term)
+    ),
 
 
-        _and_operator: $ => choice("\u{2227}", "^", "&"),
+    _and_operator: $ => choice("\u{2227}", "^", "&"),
 
-        _or_operator: $ => choice("\u{2228}", "_", "|"),
-    }
+    _or_operator: $ => choice("\u{2228}", "_", "|"),
+  }
 });
