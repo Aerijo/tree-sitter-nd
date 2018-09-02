@@ -147,7 +147,17 @@ E x . P(x)
 ∃ x . P(x) # \u{2203}
 ```
 
-### Multiline
+#### Groups
+
+There are two ways to group terms: using `()` / `[]`, or with `.`. Parentheses act as would be expected, and their types must match too (so `([)]` is not legal). The "universal group" `.` operator is a low precedence right associative operator that grabs everything remaining in the expression scope. It effectively acts like you placed a `(` at the dot, and a `)` is inserted before the next `)` or at the end of the expression. So `A x . x ^ y == A x . (x ^ y)` and `(A x . x) ^ y == (A x (x)) ^ y`
+
+```nd
+(x) ^ (y)
+(p -> q) -> r
+a ^ . b _ c # == a ^ (b _ c)
+```
+
+### Proof construction
 
 #### Hypothesis
 
@@ -261,5 +271,5 @@ a <-> A x . x == a <-> (A x (x))
 
 A x . x <-> a == A x (x <-> a)
 
-A x x <-> a == (A x (x)) <-> a
+A x x ^ y <-> a == ((A x (x)) ^ y) <-> a
 ```
