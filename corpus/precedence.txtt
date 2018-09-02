@@ -1,0 +1,91 @@
+====
+Not & And
+====
+
+-a ^ b
+a ^ -b
+
+---
+
+(block
+  (expression
+    (and
+      (not (variable))
+      (variable)))
+  (expression
+    (and
+      (variable)
+      (not (variable)))))
+
+
+====
+And & Or
+====
+
+a ^ b _ c
+a _ b ^ c
+
+a ^ b _ c ^ d
+a _ b ^ c _ d
+
+---
+
+(block
+  (expression
+    (or
+      (and (variable) (variable))
+      (variable)))
+  (expression
+    (or
+      (variable)
+      (and (variable) (variable))))
+  (expression
+    (or
+      (and (variable) (variable))
+      (and (variable) (variable))))
+  (expression
+    (or
+      (or
+        (variable)
+        (and (variable) (variable)))
+      (variable))))
+
+
+====
+Or & Implies
+====
+
+a _ b -> c
+a -> b _ c
+
+---
+
+(block
+  (expression
+    (implies
+      (or (variable) (variable))
+      (variable)))
+  (expression
+    (implies
+      (variable)
+      (or (variable) (variable)))))
+
+
+====
+Implies & Iff
+====
+
+a -> b <-> c
+a <-> b -> c
+
+---
+
+(block
+  (expression
+    (iff
+      (implies (variable) (variable))
+      (variable)))
+  (expression
+    (iff
+      (variable)
+      (implies (variable) (variable)))))

@@ -9,8 +9,7 @@ cat
 
 (block
   (expression (variable))
-  (expression (variable))
-)
+  (expression (variable)))
 
 
 ====
@@ -28,13 +27,14 @@ F(x)
 (block
   (expression (function (function_name) (variable)))
   (expression (function (function_name)))
-  (expression (function
-    (function_name)
-    (exists (variable) (function (function_name) (variable))))
-  )
+  (expression
+    (function
+      (function_name)
+      (exists
+        (variable)
+        (function (function_name) (variable)))))
   (expression (function (function_name) (variable)))
-  (expression (function (function_name) (variable)))
-)
+  (expression (function (function_name) (variable))))
 
 
 ====
@@ -48,8 +48,7 @@ F
 
 (block
   (expression (true))
-  (expression (false))
-)
+  (expression (false)))
 
 
 ====
@@ -67,8 +66,7 @@ Not
   (expression (not (variable)))
   (expression (not (variable)))
   (expression (not (variable)))
-  (expression (not (variable)))
-)
+  (expression (not (variable))))
 
 
 ====
@@ -84,8 +82,7 @@ x ∧ y
 (block
   (expression (and (variable) (variable)))
   (expression (and (variable) (variable)))
-  (expression (and (variable) (variable)))
-)
+  (expression (and (variable) (variable))))
 
 
 ====
@@ -101,8 +98,7 @@ x ∨ y
 (block
   (expression (or (variable) (variable)))
   (expression (or (variable) (variable)))
-  (expression (or (variable) (variable)))
-)
+  (expression (or (variable) (variable))))
 
 
 ====
@@ -120,8 +116,7 @@ x ⇒ y
   (expression (implies (variable) (variable)))
   (expression (implies (variable) (variable)))
   (expression (implies (variable) (variable)))
-  (expression (implies (variable) (variable)))
-)
+  (expression (implies (variable) (variable))))
 
 
 ====
@@ -141,8 +136,7 @@ x ≡ y
   (expression (iff (variable) (variable)))
   (expression (iff (variable) (variable)))
   (expression (iff (variable) (variable)))
-  (expression (iff (variable) (variable)))
-)
+  (expression (iff (variable) (variable))))
 
 
 ====
@@ -155,9 +149,11 @@ A x . A(x)
 ---
 
 (block
-  (expression (forall (variable) (function (function_name) (variable))))
-  (expression (forall (variable) (variable)))
-)
+  (expression
+    (forall
+      (variable)
+      (function (function_name) (variable))))
+  (expression (forall (variable) (variable))))
 
 
 ====
@@ -170,6 +166,8 @@ E x . E(x)
 ---
 
 (block
-  (expression (exists (variable) (function (function_name) (variable))))
-  (expression (exists (variable) (variable)))
-)
+  (expression
+    (exists
+      (variable)
+      (function (function_name) (variable))))
+  (expression (exists (variable) (variable))))

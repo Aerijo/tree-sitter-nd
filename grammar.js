@@ -10,7 +10,7 @@ const PREC = {
 };
 
 module.exports = grammar({
-  name: "nd",
+  name: 'nd',
 
   extras: $ => [$.comment, /\s/],
 
@@ -22,9 +22,9 @@ module.exports = grammar({
   rules: {
     block: $ => repeat($.expression),
 
-    comment: $ => token(seq("#", /.*/)),
+    comment: $ => token(seq('#', /.*/)),
 
-    expression: $ => seq($._term, "\n"),
+    expression: $ => seq($._term, '\n'),
 
     _term: $ => choice(
       $.variable,
@@ -41,8 +41,8 @@ module.exports = grammar({
     ),
 
     function: $ => prec.right(PREC.FUNCTION, choice(
-      seq($.function_name, optional(seq("(", $._term, ")"))),
-      seq(alias($._TF_func_name, $.function_name), "(", $._term, ")") // allow T & F if explicity functions
+      seq($.function_name, optional(seq('(', $._term, ')'))),
+      seq(alias($._TF_func_name, $.function_name), '(', $._term, ')') // allow T & F if explicity functions
     )),
 
     not: $ => prec.right(PREC.NOT,
@@ -80,36 +80,36 @@ module.exports = grammar({
     _function_name: $ => token(/[A-Z]\w*/),
 
     /*
-    To allow "A" and "E" as both function names and forall / exists: see
+    To allow 'A' and 'E' as both function names and forall / exists: see
     https://github.com/tree-sitter/tree-sitter-cli/issues/41
     */
-    _reserved_function_name: $ => choice("A", "E"),
+    _reserved_function_name: $ => choice('A', 'E'),
 
     /*
     To allow T and F as function names when used as T(x). Note a single T by
     itself will be parsed as $.true
     */
-    _TF_func_name: $ => choice("T", "F"),
+    _TF_func_name: $ => choice('T', 'F'),
 
-    true: $ => "T",
+    true: $ => 'T',
 
-    false: $ => "F",
+    false: $ => 'F',
 
-    _not_operator: $ => choice("-", "!", "~", "\u{00AC}"),
+    _not_operator: $ => choice('-', '!', '~', '\u{00AC}'),
 
-    _and_operator: $ => choice("^", "&", "\u{2227}"),
+    _and_operator: $ => choice('^', '&', '\u{2227}'),
 
-    _or_operator: $ => choice("_", "|", "\u{2228}"),
+    _or_operator: $ => choice('_', '|', '\u{2228}'),
 
-    _implies_operator: $ => choice("->", "=>", "\u{2192}", "\u{21D2}"),
+    _implies_operator: $ => choice('->', '=>', '\u{2192}', '\u{21D2}'),
 
-    _iff_operator: $ => choice("<->", "<=>", "\u{2194}", "\u{21D4}", "\u{2261}"),
+    _iff_operator: $ => choice('<->', '<=>', '\u{2194}', '\u{21D4}', '\u{2261}'),
 
-    _forall_operator: $ => choice("A", "\u{2200}"),
+    _forall_operator: $ => choice('A', '\u{2200}'),
 
-    _exists_operator: $ => choice("E", "\u{2203}"),
+    _exists_operator: $ => choice('E', '\u{2203}'),
 
-    _universal_sep: $ => choice(".")
+    _universal_sep: $ => choice('.')
 
   }
 });
