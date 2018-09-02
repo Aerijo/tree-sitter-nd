@@ -198,7 +198,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_not_operator"
+            "name": "_not_sym"
           },
           {
             "type": "SYMBOL",
@@ -219,7 +219,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_and_operator"
+            "name": "_and_sym"
           },
           {
             "type": "SYMBOL",
@@ -240,7 +240,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_or_operator"
+            "name": "_or_sym"
           },
           {
             "type": "SYMBOL",
@@ -261,7 +261,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_implies_operator"
+            "name": "_implies_sym"
           },
           {
             "type": "SYMBOL",
@@ -282,7 +282,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_iff_operator"
+            "name": "_iff_sym"
           },
           {
             "type": "SYMBOL",
@@ -299,7 +299,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_forall_operator"
+            "name": "_forall_sym"
           },
           {
             "type": "SYMBOL",
@@ -320,7 +320,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_exists_operator"
+            "name": "_exists_sym"
           },
           {
             "type": "SYMBOL",
@@ -454,7 +454,7 @@
         }
       ]
     },
-    "_not_operator": {
+    "_not_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -475,7 +475,7 @@
         }
       ]
     },
-    "_and_operator": {
+    "_and_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -492,7 +492,7 @@
         }
       ]
     },
-    "_or_operator": {
+    "_or_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -509,7 +509,7 @@
         }
       ]
     },
-    "_implies_operator": {
+    "_implies_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -530,7 +530,7 @@
         }
       ]
     },
-    "_iff_operator": {
+    "_iff_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -555,7 +555,7 @@
         }
       ]
     },
-    "_forall_operator": {
+    "_forall_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -568,7 +568,7 @@
         }
       ]
     },
-    "_exists_operator": {
+    "_exists_sym": {
       "type": "CHOICE",
       "members": [
         {
@@ -604,11 +604,11 @@
   "conflicts": [
     [
       "_reserved_function_name",
-      "_forall_operator"
+      "_forall_sym"
     ],
     [
       "_reserved_function_name",
-      "_exists_operator"
+      "_exists_sym"
     ]
   ],
   "externals": [],

@@ -17,12 +17,12 @@ module.exports = grammar({
   extras: $ => [$.comment, /\s/],
 
   conflicts: $ => [
-    [$._reserved_function_name, $._forall_operator],
-    [$._reserved_function_name, $._exists_operator]
+    [$._reserved_function_name, $._forall_sym],
+    [$._reserved_function_name, $._exists_sym]
   ],
 
   inline: $ => [
-    $._reserved_function_name,
+    $._reserved_function_name
   ],
 
   word: $ => $.variable,
@@ -66,31 +66,31 @@ module.exports = grammar({
     )),
 
     not: $ => prec.right(PREC.NOT,
-      seq($._not_operator, $._term)
+      seq($._not_sym, $._term)
     ),
 
     and: $ => prec.left(PREC.AND,
-      seq($._term, $._and_operator, $._term)
+      seq($._term, $._and_sym, $._term)
     ),
 
     or: $ => prec.left(PREC.OR,
-      seq($._term, $._or_operator, $._term)
+      seq($._term, $._or_sym, $._term)
     ),
 
     implies: $ => prec.right(PREC.IMPLIES,
-      seq($._term, $._implies_operator, $._term)
+      seq($._term, $._implies_sym, $._term)
     ),
 
     iff: $ => prec.right(PREC.IFF,
-      seq($._term, $._iff_operator, $._term)
+      seq($._term, $._iff_sym, $._term)
     ),
 
     forall: $ => prec.left(PREC.FORALL,
-      seq($._forall_operator, $.variable, $._term)
+      seq($._forall_sym, $.variable, $._term)
     ),
 
     exists: $ => prec.left(PREC.EXISTS,
-      seq($._exists_operator, $.variable, $._term)
+      seq($._exists_sym, $.variable, $._term)
     ),
 
     _group: $ => seq('(', $._term, ')'),
@@ -119,19 +119,19 @@ module.exports = grammar({
 
     false: $ => choice('F', '0', '\u{22A5}'),
 
-    _not_operator: $ => choice('-', '!', '~', '\u{00AC}'),
+    _not_sym: $ => choice('-', '!', '~', '\u{00AC}'),
 
-    _and_operator: $ => choice('^', '&', '\u{2227}'),
+    _and_sym: $ => choice('^', '&', '\u{2227}'),
 
-    _or_operator: $ => choice('_', '|', '\u{2228}'),
+    _or_sym: $ => choice('_', '|', '\u{2228}'),
 
-    _implies_operator: $ => choice('->', '=>', '\u{2192}', '\u{21D2}'),
+    _implies_sym: $ => choice('->', '=>', '\u{2192}', '\u{21D2}'),
 
-    _iff_operator: $ => choice('<->', '<=>', '\u{2194}', '\u{21D4}', '\u{2261}'),
+    _iff_sym: $ => choice('<->', '<=>', '\u{2194}', '\u{21D4}', '\u{2261}'),
 
-    _forall_operator: $ => choice('A', '\u{2200}'),
+    _forall_sym: $ => choice('A', '\u{2200}'),
 
-    _exists_operator: $ => choice('E', '\u{2203}'),
+    _exists_sym: $ => choice('E', '\u{2203}'),
 
     _universal_sep: $ => choice('.')
 
