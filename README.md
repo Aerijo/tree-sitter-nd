@@ -46,13 +46,34 @@ b -> c
 
 The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <=> b => c`, we precedence to determine it means `a <=> (b => c)`.
 
+#### Variable
+
+Any word starting with a lower case letter will be considered a variable.
+
+```nd
+x
+cat
+```
+
 #### Function
 
-Any word starting with a capital letter will be considered a function.
+Any word starting with a capital letter will be considered a function. Arguments are optional, but are required if the function name is `T` or `F`.
 
 ```nd
 Q(x)
 Cat(b)
+A(x)
+E
+T(x)
+```
+
+#### True & False
+
+`T` and `F` are semi-reserved names for true and false. These names can be used as function names if arguments are given in parentheses.
+
+```nd
+T
+F
 ```
 
 #### Not

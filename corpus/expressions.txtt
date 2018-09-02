@@ -1,4 +1,18 @@
 ====
+Variable
+====
+
+x
+cat
+
+---
+
+(block
+  (expression (variable))
+  (expression (variable))
+)
+
+====
 Function
 ====
 
@@ -20,6 +34,21 @@ F(x)
   (expression (function (function_name) (variable)))
   (expression (function (function_name) (variable)))
 )
+
+====
+True & False
+====
+
+T
+F
+
+---
+
+(block
+  (expression (true))
+  (expression (false))
+)
+
 
 ====
 Not
@@ -136,18 +165,4 @@ E x . E(x)
 (block
   (expression (exists (variable) (function (function_name) (variable))))
   (expression (exists (variable) (variable)))
-)
-
-====
-True & False
-====
-
-T
-F
-
----
-
-(block
-  (expression (true))
-  (expression (false))
 )

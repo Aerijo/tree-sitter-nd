@@ -50,6 +50,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "true"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "false"
+        },
+        {
+          "type": "SYMBOL",
           "name": "not"
         },
         {
@@ -75,14 +83,6 @@
         {
           "type": "SYMBOL",
           "name": "exists"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "true"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "false"
         }
       ]
     },
@@ -133,7 +133,7 @@
                 "type": "ALIAS",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_reserved_func_name_2"
+                  "name": "_TF_func_name"
                 },
                 "named": true,
                 "value": "function_name"
@@ -346,7 +346,7 @@
         }
       ]
     },
-    "_reserved_func_name_2": {
+    "_TF_func_name": {
       "type": "CHOICE",
       "members": [
         {
