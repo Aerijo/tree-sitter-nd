@@ -22,6 +22,8 @@ Universal group
 a ^ . b _ c
 (a ^ . b _ c) ^ d
 
+a ^ . b ^ . - c
+
 ---
 
 (block
@@ -38,4 +40,10 @@ a ^ . b _ c
         (or
           (variable)
           (variable)))
-      (variable))))
+      (variable)))
+  (expression
+    (and
+      (variable)
+      (and
+        (variable)
+        (not (variable))))))

@@ -7,7 +7,8 @@ const PREC = {
   OR: 4,
   IMPLIES: 3,
   IFF: 2,
-  UNIV_GROUP: 1
+  UNIV_GROUP: 1,
+  COMMENT: 0
 };
 
 module.exports = grammar({
@@ -29,7 +30,16 @@ module.exports = grammar({
   rules: {
     block: $ => repeat($.expression),
 
-    comment: $ => token(seq('#', /.*/)),
+    // Comments (mostly) taken from tree-sitter-javascript
+    // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+    comment: $ => token(prec(PREC.COMMENT, choice(
+      seq('#', /.*/),
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/'
+      )
+    ))),
 
     expression: $ => seq($._term, '\n'),
 

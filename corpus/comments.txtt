@@ -1,0 +1,30 @@
+====
+Line comment
+====
+
+# This is a line comment
+x ^ y # comment
+
+---
+
+(block
+  (comment)
+  (expression
+    (and (variable) (variable))
+    (comment)))
+
+
+====
+Block comment
+====
+
+# This is a line comment
+x ^ y # comment
+
+---
+
+(block
+  (comment)
+  (expression
+    (and (variable) (variable))
+    (comment)))

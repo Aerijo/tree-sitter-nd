@@ -12,17 +12,43 @@
     "comment": {
       "type": "TOKEN",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "#"
-          },
-          {
-            "type": "PATTERN",
-            "value": ".*"
-          }
-        ]
+        "type": "PREC",
+        "value": 0,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "#"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": ".*"
+                }
+              ]
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "/*"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[^*]*\\*+([^\\/*][^*]*\\*+)*"
+                },
+                {
+                  "type": "STRING",
+                  "value": "/"
+                }
+              ]
+            }
+          ]
+        }
       }
     },
     "expression": {
@@ -267,7 +293,7 @@
     },
     "forall": {
       "type": "PREC_LEFT",
-      "value": 10,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -288,7 +314,7 @@
     },
     "exists": {
       "type": "PREC_LEFT",
-      "value": 10,
+      "value": 6,
       "content": {
         "type": "SEQ",
         "members": [
@@ -326,7 +352,7 @@
     },
     "_universal_group": {
       "type": "PREC_RIGHT",
-      "value": 0,
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
