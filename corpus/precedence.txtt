@@ -84,8 +84,8 @@ Forall
 ====
 
 A x . A y . x
-
 A x x ^ A y y
+A x A y y ^ z
 
 ---
 
@@ -103,7 +103,13 @@ A x x ^ A y y
         (variable))
       (forall
         (variable)
-        (variable)))))
+        (variable))))
+  (expression
+    (and
+      (forall
+        (variable)
+        (forall (variable) (variable)))
+      (variable))))
 
 
 ====
@@ -112,9 +118,17 @@ Exists
 
 E x . E y . x
 
+E x E y x
+
 ---
 
 (block
+  (expression
+    (exists
+      (variable)
+      (exists
+        (variable)
+        (variable))))
   (expression
     (exists
       (variable)
@@ -259,36 +273,26 @@ A x x <-> a
   (expression
     (iff
       (variable)
-      (forall
-        (variable)
-        (variable))))
+      (forall (variable) (variable))))
+  (expression
+    (forall
+      (variable)
+      (iff (variable) (variable))))
   (expression
     (forall
       (variable)
       (iff
         (variable)
-        (variable))))
-  (expression
-    (forall
-      (variable)
-      (iff
-        (variable)
-        (forall
-          (variable)
-          (variable)))))
+        (forall (variable) (variable)))))
   (expression
     (iff
       (variable)
       (forall
         (variable)
-        (iff
-          (variable)
-          (variable)))))
+        (iff (variable) (variable)))))
   (expression
     (iff
-      (forall
-        (variable)
-        (variable))
+      (forall (variable) (variable))
       (variable))))
 
 
@@ -303,6 +307,4 @@ Not & Forall
 (block
   (expression
     (not
-      (forall
-        (variable)
-        (not (variable))))))
+      (forall (variable) (not (variable))))))
