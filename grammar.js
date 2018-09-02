@@ -6,7 +6,7 @@ const PREC = {
   IMPLIES: 3,
   IFF: 2,
   FORALL: 1,
-  EXISTS: 0
+  EXISTS: 1
 };
 
 module.exports = grammar({
@@ -14,38 +14,36 @@ module.exports = grammar({
 
   extras: $ => [$.comment, /\s/],
 
-  // externals: $ => [
-  //   $.function
-  // ],
-  //
-  // conflicts: $ => [
-  //   [$.function, $.forall]
-  // ],
+  conflicts: $ => [
+    [$._reserved_function_name, $._forall_operator],
+    [$._reserved_function_name, $._exists_operator]
+  ],
 
   rules: {
     block: $ => repeat($.expression),
 
     comment: $ => token(seq("#", /.*/)),
 
-    expression: $ => seq(repeat1($._term), "\n"),
+    expression: $ => seq($._term, "\n"),
 
     _term: $ => choice(
       $.variable,
       $.function,
+      $.true,
+      $.false,
       $.not,
       $.and,
       $.or,
       $.implies,
       $.iff,
       $.forall,
-      $.exists,
-      $.true,
-      $.false
+      $.exists
     ),
 
-    function: $ => prec.right(PREC.FUNCTION,
-      seq($.function_name, optional(seq("(", $._term, ")")))
-    ),
+    function: $ => prec.right(PREC.FUNCTION, choice(
+      seq($.function_name, optional(seq("(", $._term, ")"))),
+      seq(alias($._TF_func_name, $.function_name), "(", $._term, ")") // allow T & F if explicity functions
+    )),
 
     not: $ => prec.right(PREC.NOT,
       seq($._not_operator, $._term)
@@ -77,7 +75,21 @@ module.exports = grammar({
 
     variable: $ => token(/[a-z]\w*/),
 
-    function_name: $ => token(/[A-Z]\w*/),
+    function_name: $ => choice($._function_name, $._reserved_function_name),
+
+    _function_name: $ => token(/[A-Z]\w*/),
+
+    /*
+    To allow "A" and "E" as both function names and forall / exists: see
+    https://github.com/tree-sitter/tree-sitter-cli/issues/41
+    */
+    _reserved_function_name: $ => choice("A", "E"),
+
+    /*
+    To allow T and F as function names when used as T(x). Note a single T by
+    itself will be parsed as $.true
+    */
+    _TF_func_name: $ => choice("T", "F"),
 
     true: $ => "T",
 

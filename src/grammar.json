@@ -28,11 +28,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_term"
-          }
+          "type": "SYMBOL",
+          "name": "_term"
         },
         {
           "type": "STRING",
@@ -93,34 +90,65 @@
       "type": "PREC_RIGHT",
       "value": 7,
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "function_name"
-          },
-          {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "("
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_term"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ")"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "function_name"
               },
               {
-                "type": "BLANK"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "("
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_term"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ")"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_reserved_func_name_2"
+                },
+                "named": true,
+                "value": "function_name"
+              },
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_term"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
               }
             ]
           }
@@ -255,7 +283,7 @@
     },
     "exists": {
       "type": "PREC_RIGHT",
-      "value": 0,
+      "value": 1,
       "content": {
         "type": "SEQ",
         "members": [
@@ -286,11 +314,50 @@
       }
     },
     "function_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_function_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_reserved_function_name"
+        }
+      ]
+    },
+    "_function_name": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
         "value": "[A-Z]\\w*"
       }
+    },
+    "_reserved_function_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "E"
+        }
+      ]
+    },
+    "_reserved_func_name_2": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "T"
+        },
+        {
+          "type": "STRING",
+          "value": "F"
+        }
+      ]
     },
     "true": {
       "type": "STRING",
@@ -447,7 +514,16 @@
       "value": "\\s"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "_reserved_function_name",
+      "_forall_operator"
+    ],
+    [
+      "_reserved_function_name",
+      "_exists_operator"
+    ]
+  ],
   "externals": [],
   "inline": []
 }

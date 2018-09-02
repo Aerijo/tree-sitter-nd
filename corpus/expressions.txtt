@@ -5,6 +5,8 @@ Function
 A(x)
 B
 A(E x . P(x))
+T(x)
+F(x)
 
 ---
 
@@ -13,9 +15,10 @@ A(E x . P(x))
   (expression (function (function_name)))
   (expression (function
     (function_name)
-    (exists (variable) (function (function_name) (variable)))
-    )
+    (exists (variable) (function (function_name) (variable))))
   )
+  (expression (function (function_name) (variable)))
+  (expression (function (function_name) (variable)))
 )
 
 ====
@@ -111,7 +114,40 @@ x ≡ y
 Forall
 ====
 
-A x . x
+A x . A(x)
 ∀ x . x
 
 ---
+
+(block
+  (expression (forall (variable) (function (function_name) (variable))))
+  (expression (forall (variable) (variable)))
+)
+
+====
+Exists
+====
+
+E x . E(x)
+∃ x . x
+
+---
+
+(block
+  (expression (exists (variable) (function (function_name) (variable))))
+  (expression (exists (variable) (variable)))
+)
+
+====
+True & False
+====
+
+T
+F
+
+---
+
+(block
+  (expression (true))
+  (expression (false))
+)
