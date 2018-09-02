@@ -85,12 +85,22 @@ Forall
 
 A x . A y . x
 
+A x x ^ A y y
+
 ---
 
 (block
   (expression
     (forall
       (variable)
+      (forall
+        (variable)
+        (variable))))
+  (expression
+    (and
+      (forall
+        (variable)
+        (variable))
       (forall
         (variable)
         (variable)))))
@@ -241,6 +251,8 @@ A x . x <-> a
 A x . x <-> A y . y
 x <-> A y . y <-> x
 
+A x x <-> a
+
 ---
 
 (block
@@ -271,4 +283,26 @@ x <-> A y . y <-> x
         (variable)
         (iff
           (variable)
-          (variable))))))
+          (variable)))))
+  (expression
+    (iff
+      (forall
+        (variable)
+        (variable))
+      (variable))))
+
+
+====
+Not & Forall
+====
+
+-A x -x
+
+---
+
+(block
+  (expression
+    (not
+      (forall
+        (variable)
+        (not (variable))))))

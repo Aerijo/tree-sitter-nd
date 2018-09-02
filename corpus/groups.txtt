@@ -1,0 +1,41 @@
+====
+Parentheses
+====
+
+(a -> b) -> c
+
+---
+
+(block
+  (expression
+    (implies
+      (implies
+        (variable)
+        (variable))
+      (variable))))
+
+
+====
+Universal group
+====
+
+a ^ . b _ c
+(a ^ . b _ c) ^ d
+
+---
+
+(block
+  (expression
+    (and
+      (variable)
+      (or
+        (variable)
+        (variable))))
+  (expression
+    (and
+      (and
+        (variable)
+        (or
+          (variable)
+          (variable)))
+      (variable))))

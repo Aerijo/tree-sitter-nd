@@ -1,12 +1,13 @@
 const PREC = {
-  FUNCTION: 7,
-  NOT: 6,
+  FUNCTION: 8,
+  NOT: 7,
+  FORALL: 6,
+  EXISTS: 6,
   AND: 5,
   OR: 4,
   IMPLIES: 3,
   IFF: 2,
-  FORALL: 1,
-  EXISTS: 1
+  UNIV_GROUP: 1
 };
 
 module.exports = grammar({
@@ -43,7 +44,10 @@ module.exports = grammar({
       $.implies,
       $.iff,
       $.forall,
-      $.exists
+      $.exists,
+
+      $._group,
+      $._universal_group
     ),
 
     function: $ => prec.right(PREC.FUNCTION, choice(
@@ -71,13 +75,17 @@ module.exports = grammar({
       seq($._term, $._iff_operator, $._term)
     ),
 
-    forall: $ => prec.right(PREC.FORALL,
-      seq($._forall_operator, $.variable, $._universal_sep, $._term)
+    forall: $ => prec.left(PREC.FORALL,
+      seq($._forall_operator, $.variable, $._term)
     ),
 
-    exists: $ => prec.right(PREC.EXISTS,
-      seq($._exists_operator, $.variable, $._universal_sep, $._term)
+    exists: $ => prec.left(PREC.EXISTS,
+      seq($._exists_operator, $.variable, $._term)
     ),
+
+    _group: $ => seq('(', $._term, ')'),
+
+    _universal_group: $ => prec.right(PREC.UNIV_GROUP, seq('.', $._term)),
 
     variable: $ => token(/[a-z]\w*/),
 

@@ -15,7 +15,7 @@ This language is designed to be quickly typed and rearranged, while still being 
 
 Here I go through the legal syntax. The tests in the `corpus` directory can be considered the definitive language spec. If something is legitimately ambiguous, I will try to patch it and add new tests to specify expected behaviour.
 
-Note that most rules here have alternative syntax. This is to allow for personal preference, and typing ease. For example, you can use the unicode character `∧` for an _and_ expression, but `^` will do the same and is readily accessible on most keyboards. Whatever you pick, for the sake of yourself and others please be consistent. The accompanying linter (planned).
+Note that most rules here have alternative syntax. This is to allow for personal preference, and typing ease. For example, you can use the unicode character `∧` for an _and_ expression, but `^` will do the same and is readily accessible on most keyboards. Whatever you pick, for the sake of yourself and others please be consistent. The accompanying linter (planned) will probably shout at you if you combine styles.
 
 Whitespace between tokens is ignored. Consecutive word characters will be read as a single variable, but `x ^ y` is the same as `x^y`. Indentation is very important however, and is used to determine block scoping (like Python).
 
@@ -44,7 +44,7 @@ b -> c
 
 ### Expressions
 
-The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <-> b -> c`, we precedence to determine it means `a <-> (b -> c)`.
+The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <-> b -> c`, we use precedence to determine it means `a <-> (b -> c)`.
 
 #### Variable
 
@@ -127,12 +127,20 @@ x ≡ y # \u{2261}
 
 #### Forall
 
+There is technically only one syntax at work here, which is `<forall> <var> <term>`. However, this grammar treats `.` as a "universal" group, which grabs everything it can in it's scope (it's low precedence and right associative).
+
+A pure `forall` term actually has a precedence between `and` and `not`, and is left associative. The associated parse trees for the following would all be rooted as forall.
+
 ```nd
-A x . P(x)
+A x . P(x) <-> Q(x)
+A x (P(x) <-> Q(x))
+A x P(x)
 ∀ x . P(x) # \u{2200}
 ```
 
 #### Exists
+
+Behaves identically to forall.
 
 ```nd
 E x . P(x)
@@ -236,14 +244,12 @@ a _ b ^ c _ d == (a _ (b ^ c)) _ d
 ```
 a _ b -> c == (a _ b) -> c
 
-
-
 a -> b _ c -> d == a -> ((b _ c) -> d)
 ```
 
 #### Implies & Iff
 ```
-a -> b <-> c == (a -> b) <-> c
+a -> b <-> c -> d == (a -> b) <-> (c -> d)
 
 a <-> b -> c <-> d == a <-> ((b -> c) <-> d)
 ```
@@ -251,7 +257,9 @@ a <-> b -> c <-> d == a <-> ((b -> c) <-> d)
 
 #### Iff & Forall
 ```
-a <-> A x . x == a <-> (A x . x)
+a <-> A x . x == a <-> (A x (x))
 
-A x . x <-> a == A x . (x <-> a)
+A x . x <-> a == A x (x <-> a)
+
+A x x <-> a == (A x (x)) <-> a
 ```
