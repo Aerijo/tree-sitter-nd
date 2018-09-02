@@ -60,13 +60,16 @@ Not
 ~x
 ¬x
 
+--x
+
 ---
 
 (block
   (expression (not (variable)))
   (expression (not (variable)))
   (expression (not (variable)))
-  (expression (not (variable))))
+  (expression (not (variable)))
+  (expression (not (not (variable)))))
 
 
 ====

@@ -58,6 +58,9 @@ Or & Implies
 a _ b -> c
 a -> b _ c
 
+a _ b -> c _ d
+a -> b _ c -> d
+
 ---
 
 (block
@@ -68,7 +71,17 @@ a -> b _ c
   (expression
     (implies
       (variable)
-      (or (variable) (variable)))))
+      (or (variable) (variable))))
+  (expression
+    (implies
+      (or (variable) (variable))
+      (or (variable) (variable))))
+  (expression
+    (implies
+      (variable)
+      (implies
+        (or (variable) (variable))
+        (variable)))))
 
 
 ====
@@ -77,6 +90,9 @@ Implies & Iff
 
 a -> b <-> c
 a <-> b -> c
+
+a -> b <-> c -> d
+a <-> b -> c <-> d
 
 ---
 
@@ -88,4 +104,40 @@ a <-> b -> c
   (expression
     (iff
       (variable)
-      (implies (variable) (variable)))))
+      (implies (variable) (variable))))
+  (expression
+    (iff
+      (implies (variable) (variable))
+      (implies (variable) (variable))))
+  (expression
+    (iff
+      (variable)
+      (iff
+        (implies (variable) (variable))
+        (variable)))))
+
+
+====
+Iff & Forall
+====
+
+a <-> A x . P(x)
+A x . P(x) <-> a
+
+---
+
+(block
+  (expression
+    (iff
+      (variable)
+      (forall
+        (variable)
+        (function (function_name) (variable)))))
+  (expression
+    (forall
+      (variable)
+      (iff
+        (function
+          (function_name)
+          (variable))
+        (variable)))))
