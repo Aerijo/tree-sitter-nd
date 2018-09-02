@@ -44,7 +44,7 @@ b -> c
 
 ### Expressions
 
-The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <=> b => c`, we precedence to determine it means `a <=> (b => c)`.
+The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <-> b -> c`, we precedence to determine it means `a <-> (b -> c)`.
 
 #### Variable
 
@@ -215,3 +215,38 @@ A x . P(x) -> Q(x)
 ## Examples
 
 Here I provide examples of the language in practice. Currently, only one proof per file is planned. This may be revised.
+
+### Precedence
+
+How to interpret an expression without explicit grouping is ambiguous; there are no strict rules to follow. This grammar enforces it's own interpretation, which is used when converting to LaTeX with explicit parentheses and when checking a proof. Here are some examples of statements with and without parentheses. A more comprehensive set of tests can be found in the `corpus/precedence.txtt` test file.
+
+#### And & Or
+```
+a ^ b _ c == (a ^ b) _ c
+
+a _ b ^ c _ d == (a _ (b ^ c)) _ d
+```
+
+#### Or & Implies
+```
+a _ b -> c == (a _ b) -> c
+
+
+
+a -> b _ c -> d == a -> ((b _ c) -> d)
+```
+
+#### Implies & Iff
+```
+a -> b <-> c == (a -> b) <-> c
+
+a <-> b -> c <-> d == a <-> ((b -> c) <-> d)
+```
+
+
+#### Iff & Forall
+```
+a <-> A x . x == a <-> (A x . x)
+
+A x . x <-> a == A x . (x <-> a)
+```

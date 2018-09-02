@@ -19,6 +19,12 @@ module.exports = grammar({
     [$._reserved_function_name, $._exists_operator]
   ],
 
+  inline: $ => [
+    $._reserved_function_name,
+  ],
+
+  word: $ => $.variable,
+
   rules: {
     block: $ => repeat($.expression),
 
@@ -91,9 +97,9 @@ module.exports = grammar({
     */
     _TF_func_name: $ => choice('T', 'F'),
 
-    true: $ => 'T',
+    true: $ => choice('T', '1', '\u{22A4}'),
 
-    false: $ => 'F',
+    false: $ => choice('F', '0', '\u{22A5}'),
 
     _not_operator: $ => choice('-', '!', '~', '\u{00AC}'),
 

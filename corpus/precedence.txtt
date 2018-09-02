@@ -1,4 +1,119 @@
 ====
+Not
+====
+
+--x
+
+---
+
+(block
+  (expression
+    (not (not (variable)))))
+
+
+====
+And
+====
+
+a ^ b ^ c
+
+---
+
+(block
+  (expression
+    (and
+      (and
+        (variable)
+        (variable))
+      (variable))))
+
+
+====
+Or
+====
+
+a _ b _ c
+
+---
+
+(block
+  (expression
+    (or
+      (or
+        (variable)
+        (variable))
+      (variable))))
+
+
+====
+Implies
+====
+
+a -> b -> c
+
+---
+
+(block
+  (expression
+    (implies
+      (variable)
+      (implies
+        (variable)
+        (variable)))))
+
+
+====
+Iff
+====
+
+a <-> b <-> c
+
+---
+
+(block
+  (expression
+    (iff
+      (variable)
+      (iff
+        (variable)
+        (variable)))))
+
+
+====
+Forall
+====
+
+A x . A y . x
+
+---
+
+(block
+  (expression
+    (forall
+      (variable)
+      (forall
+        (variable)
+        (variable)))))
+
+
+====
+Exists
+====
+
+E x . E y . x
+
+---
+
+(block
+  (expression
+    (exists
+      (variable)
+      (exists
+        (variable)
+        (variable)))))
+
+
+====
 Not & And
 ====
 
@@ -83,7 +198,6 @@ a -> b _ c -> d
         (or (variable) (variable))
         (variable)))))
 
-
 ====
 Implies & Iff
 ====
@@ -121,8 +235,11 @@ a <-> b -> c <-> d
 Iff & Forall
 ====
 
-a <-> A x . P(x)
-A x . P(x) <-> a
+a <-> A x . x
+A x . x <-> a
+
+A x . x <-> A y . y
+x <-> A y . y <-> x
 
 ---
 
@@ -132,12 +249,26 @@ A x . P(x) <-> a
       (variable)
       (forall
         (variable)
-        (function (function_name) (variable)))))
+        (variable))))
   (expression
     (forall
       (variable)
       (iff
-        (function
-          (function_name)
-          (variable))
-        (variable)))))
+        (variable)
+        (variable))))
+  (expression
+    (forall
+      (variable)
+      (iff
+        (variable)
+        (forall
+          (variable)
+          (variable)))))
+  (expression
+    (iff
+      (variable)
+      (forall
+        (variable)
+        (iff
+          (variable)
+          (variable))))))

@@ -3,7 +3,7 @@ Variable
 ====
 
 x
-cat
+var_name_1_
 
 ---
 
@@ -42,12 +42,20 @@ True & False
 ====
 
 T
+1
+⊤
 F
+0
+⊥
 
 ---
 
 (block
   (expression (true))
+  (expression (true))
+  (expression (true))
+  (expression (false))
+  (expression (false))
   (expression (false)))
 
 

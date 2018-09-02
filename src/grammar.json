@@ -1,5 +1,6 @@
 {
   "name": "nd",
+  "word": "variable",
   "rules": {
     "block": {
       "type": "REPEAT",
@@ -360,12 +361,38 @@
       ]
     },
     "true": {
-      "type": "STRING",
-      "value": "T"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "T"
+        },
+        {
+          "type": "STRING",
+          "value": "1"
+        },
+        {
+          "type": "STRING",
+          "value": "⊤"
+        }
+      ]
     },
     "false": {
-      "type": "STRING",
-      "value": "F"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "F"
+        },
+        {
+          "type": "STRING",
+          "value": "0"
+        },
+        {
+          "type": "STRING",
+          "value": "⊥"
+        }
+      ]
     },
     "_not_operator": {
       "type": "CHOICE",
@@ -525,5 +552,7 @@
     ]
   ],
   "externals": [],
-  "inline": []
+  "inline": [
+    "_reserved_function_name"
+  ]
 }
