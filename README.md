@@ -10,12 +10,14 @@ This language is designed to be quickly typed and rearranged, while still being 
 
 - Disclaimer: I'm still learning ND, and I have no idea what problems I'll need to solve with it. The current syntax is focused on concrete proofs, but I may revise it to better support abstractions like dots for omitted lines. I would like this language to be flexible, but that is not a priority.
 
+- Some precedence decisions are arbitrary, as there is no official standard to conform to. I've tried to be as explicit as possible about what the parse tree will look like, and have loads of examples, but please always use parentheses when dealing with potentially ambiguous (to the reader) expressions.
+
 
 ## Syntax
 
-Here I go through the legal syntax. The tests in the `corpus` directory can be considered the definitive language spec. If something is legitimately ambiguous, I will try to patch it and add new tests to specify expected behaviour.
+Here I go through the legal syntax. The tests in the `corpus` directory can be considered the definitive language spec. If something is legitimately ambiguous, I will try to patch it and/or add new tests to specify expected behaviour.
 
-Note that most rules here have alternative syntax. This is to allow for personal preference, and typing ease. For example, you can use the unicode character `∧` for an _and_ expression, but `^` will do the same and is readily accessible on most keyboards. Whatever you pick, for the sake of yourself and others please be consistent. The accompanying linter (planned) will probably shout at you if you combine styles.
+Note that most rules here have alternative syntax. This is to allow for personal preference, and typing ease. For example, you can use the unicode character `∧` for an _and_ expression, but `^` or `&` will do the same and is readily accessible on most keyboards. Whatever you pick, for the sake of yourself and others please be consistent. The accompanying linter (planned) will probably shout at you if you combine styles.
 
 Whitespace between tokens is ignored. Consecutive word characters will be read as a single variable, but `x ^ y` is the same as `x^y`. Indentation is very important however, and is used to determine block scoping (like Python).
 
@@ -44,7 +46,7 @@ b -> c
 
 ### Expressions
 
-The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <-> b -> c`, we use precedence to determine it means `a <-> (b -> c)`.
+The following are listed in order of precedence, from highest to lowest. When a statement could be ambiguous, such as `a <-> b -> c`, we use precedence to determine it means `a <-> (b -> c)`. We also use associativity to parse `p -> q -> r` as `p -> (q -> r)` and `a ^ b ^ c` as `(a ^ b) ^ c`.
 
 #### Variable
 

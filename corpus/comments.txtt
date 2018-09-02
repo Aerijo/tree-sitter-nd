@@ -18,13 +18,13 @@ x ^ y # comment
 Block comment
 ====
 
-# This is a line comment
-x ^ y # comment
+/* This is a block comment */
+/* And so is this
+x ^ y
+*/
 
 ---
 
 (block
   (comment)
-  (expression
-    (and (variable) (variable))
-    (comment)))
+  (comment))
