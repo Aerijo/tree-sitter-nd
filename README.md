@@ -204,7 +204,7 @@ ___
 
 Expressions are broken by a newline character. To split one expression over several lines, the backslash `\` character may be used. Comments are not permitted following this backslash. Normal block indentation rules are ignored for line continuations.
 
-These line continuations can be configured to be respected by the `nd-to-latex` tool.
+These line continuations can be configured to be respected by the `nd-convert` tool.
 
 ```nd
 a -> b -> c -> d -> e ^ f _ -g
