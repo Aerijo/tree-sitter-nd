@@ -2,7 +2,6 @@
 Parentheses
 ====
 
-___
 (a -> b) -> c
 
 ---
@@ -20,7 +19,6 @@ ___
 Universal group
 ====
 
-___
 a ^ . b _ c
 (a ^ . b _ c) ^ d
 a ^ . b ^ . - c

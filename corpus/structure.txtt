@@ -18,9 +18,9 @@ q
 Multiple hypothesese
 ====
 
-p
-q
-r
+p,
+q,
+r,
 s
 ___
 z
@@ -84,7 +84,7 @@ Multiple guards with Multiple hypothesis
 ====
 
 [a, b, c,]
-p
+p,
 q
 ___
 z

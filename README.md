@@ -19,9 +19,9 @@ Here I go through the legal syntax. The tests in the `corpus` directory can be c
 
 Note that most rules here have alternative syntax. This is to allow for personal preference, and typing ease. For example, you can use the unicode character `∧` for an _and_ expression, but `^` or `&` will do the same and is readily accessible on most keyboards. Whatever you pick, for the sake of yourself and others please be consistent. The accompanying linter (planned) will probably shout at you if you combine styles.
 
-Whitespace between tokens is ignored. Consecutive word characters will be read as a single variable, but `x ^ y` is the same as `x^y`. Indentation is very important however, and is used to determine block scoping (like Python).
+Whitespace between tokens is ignored. Consecutive word characters will be read as a single variable, but `x ^ y` is the same as `x^y`. Indentation is not syntactic, but highly recommended for readability.
 
-In the following, an `expression` is one logical expression, e.g, `a -> b -> c` or `x ^ y _ z`. In most cases, only one expression is permitted per line. The `block` of an expression refers to a consecutive sequence of expressions of equal or deeper nesting / indentation than the chosen expression.
+In the following, an `expression` is one logical expression, e.g, `a -> b -> c` or `x ^ y _ z`. In most cases, only one expression is permitted per line. The `block` of an expression refers to a consecutive sequence of expressions of equal or deeper nesting than the chosen expression.
 
 ### Comments
 
@@ -50,7 +50,7 @@ The following are listed in order of precedence, from highest to lowest. When a 
 
 #### Variable
 
-Any word starting with a lower case letter will be considered a variable.
+Any word starting with a lower case letter will be considered a variable, with the exception of `v`. This is because `v` is used to represent the `or` operator.
 
 ```nd
 x
@@ -105,6 +105,7 @@ x ∧ y # \u{2227}
 ```nd
 x _ y
 x | y
+x v y
 x ∨ y # \u{2228}
 ```
 
@@ -181,16 +182,20 @@ q
 
 #### Block
 
-Blocks are determined by indentation. The syntax is the same as Python.
+Blocks are determined by curly bracket scoping. Blank lines are ignored.
 
 ```nd
 P(a) -> Q(a)
--Q(a):
+-Q(a)
+___
+{
     /* inner block */
-    P(a):
+    P(a)
+    ____
     Q(a)
     F
     /* end of inner block */
+}
 -P(a)
 ```
 
@@ -218,21 +223,27 @@ Guards are one of the more difficult constructs to express well. Currently, I th
 
 ```nd
 A x . P(x) -> Q(x)
-    [a]
-    P(a):
+{[a]
+    P(a)
+    ___
     Q(a)
+}
 ```
 
 The guard lines up with the block it is local to. All guards must be declared at the top of their block. Multiple guards in a single block (if ever necessary) can be defined like so. No particular method is enforced, so this is a stylistic choice (for now).
 
 ```nd
 A x . P(x) -> Q(x)
+___
+{
     # declare the arb. variables a, b, c, d, and e
     [a][b]
     [c]
     [d,e]
-    P(a):
+    P(a)
+    ___
     Q(a)
+}
 ```
 
 

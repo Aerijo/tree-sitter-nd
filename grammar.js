@@ -33,19 +33,23 @@ module.exports = grammar({
   rules: {
     // proof: $ => optional($.block), // will likely transition to this (at least move up from block)
 
-    block: $ => seq(
+    block: $ => prec.right(seq(
       optional($.guard),
       optional($.hypothesis),
-      $._hypothesis_end,
+      optional($._hypothesis_end),
       repeat1(choice(
         $.comment,
         seq($.expression, '\n'),
-        // $._nested_block
-      )),
-      // '\n'
+        $._nested_block
+      ))),
     ),
 
     guard: $ => seq('[', optional($.vars), ']'),
+
+    annotation: $ => seq('@', repeat(choice(
+      /[^<#\n]+/,
+      seq('<', /[^>]*/, '>')
+    ))),
 
     vars: $ => seq(
       $.variable,
@@ -53,7 +57,15 @@ module.exports = grammar({
       optional(',')
     ),
 
-    hypothesis: $ => repeat1(seq($.expression, '\n')),
+    hypothesis: $ => seq(
+      choice(
+        seq($.expression, repeat1(seq(',\n', $.expression))),
+        $.expression
+      ),
+      optional(','),
+      '\n',
+      $._hypothesis_end
+  ),
 
     _hypothesis_end: $ => token(seq("___", repeat("_"))),
 
@@ -68,13 +80,13 @@ module.exports = grammar({
       )
     ))),
 
-    // _nested_block: $ => seq(
-    //   $._indent,
-    //   repeat1($.block),
-    //   $._dedent
-    // ),
+    _nested_block: $ => seq(
+      '{',
+      $.block,
+      '}'
+    ),
 
-    expression: $ => prec.left($._term),
+    expression: $ => seq($._term, optional($.annotation)),
 
     _term: $ => choice(
       $.variable,
