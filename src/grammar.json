@@ -3,10 +3,116 @@
   "word": "variable",
   "rules": {
     "block": {
-      "type": "REPEAT",
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "guard"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "hypothesis"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_hypothesis_end"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "comment"
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "expression"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\n"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "guard": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "hypothesis": {
+      "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "expression"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": "\n"
+          }
+        ]
+      }
+    },
+    "_hypothesis_end": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "___"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "STRING",
+              "value": "_"
+            }
+          }
+        ]
       }
     },
     "comment": {
@@ -52,17 +158,12 @@
       }
     },
     "expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_term"
-        },
-        {
-          "type": "STRING",
-          "value": "\n"
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SYMBOL",
+        "name": "_term"
+      }
     },
     "_term": {
       "type": "CHOICE",
@@ -370,8 +471,17 @@
     "variable": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "[a-z]\\w*"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[a-uw-z]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[a-z]\\w*"
+          }
+        ]
       }
     },
     "function_name": {
@@ -408,17 +518,21 @@
       ]
     },
     "_TF_func_name": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "T"
-        },
-        {
-          "type": "STRING",
-          "value": "F"
-        }
-      ]
+      "type": "PREC_DYNAMIC",
+      "value": 12,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "T"
+          },
+          {
+            "type": "STRING",
+            "value": "F"
+          }
+        ]
+      }
     },
     "true": {
       "type": "CHOICE",
@@ -502,6 +616,10 @@
         {
           "type": "STRING",
           "value": "|"
+        },
+        {
+          "type": "STRING",
+          "value": "v"
         },
         {
           "type": "STRING",
@@ -603,12 +721,24 @@
   ],
   "conflicts": [
     [
-      "_reserved_function_name",
+      "function_name",
       "_forall_sym"
     ],
     [
-      "_reserved_function_name",
+      "function_name",
       "_exists_sym"
+    ],
+    [
+      "_TF_func_name",
+      "true"
+    ],
+    [
+      "_TF_func_name",
+      "false"
+    ],
+    [
+      "hypothesis",
+      "block"
     ]
   ],
   "externals": [],

@@ -2,6 +2,7 @@
 Line comment
 ====
 
+___
 # This is a line comment
 x ^ y # comment
 
@@ -10,14 +11,15 @@ x ^ y # comment
 (block
   (comment)
   (expression
-    (and (variable) (variable))
-    (comment)))
+    (and (variable) (variable)))
+  (comment))
 
 
 ====
 Block comment
 ====
 
+___
 /* This is a block comment */
 /* And so is this
 x ^ y

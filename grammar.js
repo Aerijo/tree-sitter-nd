@@ -17,8 +17,11 @@ module.exports = grammar({
   extras: $ => [$.comment, /\s/],
 
   conflicts: $ => [
-    [$._reserved_function_name, $._forall_sym],
-    [$._reserved_function_name, $._exists_sym]
+    [$.function_name, $._forall_sym],
+    [$.function_name, $._exists_sym],
+    [$._TF_func_name, $.true],
+    [$._TF_func_name, $.false],
+    [$.hypothesis, $.block]
   ],
 
   inline: $ => [
@@ -28,7 +31,25 @@ module.exports = grammar({
   word: $ => $.variable,
 
   rules: {
-    block: $ => repeat($.expression),
+    // proof: $ => optional($.block), // will likely transition to this (at least move up from block)
+
+    block: $ => seq(
+      optional($.guard),
+      optional($.hypothesis),
+      $._hypothesis_end,
+      repeat1(choice(
+        $.comment,
+        seq($.expression, '\n'),
+        // $._nested_block
+      )),
+      // '\n'
+    ),
+
+    guard: $ => seq('[', repeat($.variable), ']'),
+
+    hypothesis: $ => repeat1(seq($.expression, '\n')),
+
+    _hypothesis_end: $ => token(seq("___", repeat("_"))),
 
     // Comments (mostly) taken from tree-sitter-javascript
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
@@ -41,7 +62,13 @@ module.exports = grammar({
       )
     ))),
 
-    expression: $ => seq($._term, '\n'),
+    // _nested_block: $ => seq(
+    //   $._indent,
+    //   repeat1($.block),
+    //   $._dedent
+    // ),
+
+    expression: $ => prec.left($._term),
 
     _term: $ => choice(
       $.variable,
@@ -97,7 +124,7 @@ module.exports = grammar({
 
     _universal_group: $ => prec.right(PREC.UNIV_GROUP, seq('.', $._term)),
 
-    variable: $ => token(/[a-z]\w*/),
+    variable: $ => token(choice(/[a-uw-z]/, /[a-z]\w*/)),
 
     function_name: $ => choice($._function_name, $._reserved_function_name),
 
@@ -113,7 +140,7 @@ module.exports = grammar({
     To allow T and F as function names when used as T(x). Note a single T by
     itself will be parsed as $.true
     */
-    _TF_func_name: $ => choice('T', 'F'),
+    _TF_func_name: $ => prec.dynamic(12, choice('T', 'F')),
 
     true: $ => choice('T', '1', '\u{22A4}'),
 
@@ -123,7 +150,7 @@ module.exports = grammar({
 
     _and_sym: $ => choice('^', '&', '\u{2227}'),
 
-    _or_sym: $ => choice('_', '|', '\u{2228}'),
+    _or_sym: $ => choice('_', '|', 'v', '\u{2228}'),
 
     _implies_sym: $ => choice('->', '=>', '\u{2192}', '\u{21D2}'),
 

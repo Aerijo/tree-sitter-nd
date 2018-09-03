@@ -1,0 +1,49 @@
+====
+Single hypothesis
+====
+
+p
+___
+q
+
+---
+
+(block
+  (hypothesis
+    (expression (variable)))
+  (expression (variable)))
+
+
+====
+Multiple hypothesese
+====
+
+p
+q
+r
+s
+___
+z
+
+---
+
+(block
+  (hypothesis
+    (expression (variable))
+    (expression (variable))
+    (expression (variable))
+    (expression (variable)))
+  (expression (variable)))
+
+
+====
+Blank hypothesis
+====
+
+___
+z
+
+---
+
+(block
+  (expression (variable)))

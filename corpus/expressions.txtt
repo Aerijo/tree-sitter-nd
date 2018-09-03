@@ -2,6 +2,7 @@
 Variable
 ====
 
+___
 x
 var_name_1_
 
@@ -16,6 +17,7 @@ var_name_1_
 Function
 ====
 
+___
 A(x)
 B
 A(E x . P(x))
@@ -41,6 +43,7 @@ F(x)
 True & False
 ====
 
+___
 T
 1
 ⊤
@@ -63,11 +66,11 @@ F
 Not
 ====
 
+___
 -x
 !x
 ~x
 ¬x
-
 --x
 
 ---
@@ -84,6 +87,7 @@ Not
 And
 ====
 
+___
 x ^ y
 x & y
 x ∧ y
@@ -100,13 +104,16 @@ x ∧ y
 Or
 ====
 
+___
 x _ y
 x | y
+x v y
 x ∨ y
 
 ---
 
 (block
+  (expression (or (variable) (variable)))
   (expression (or (variable) (variable)))
   (expression (or (variable) (variable)))
   (expression (or (variable) (variable))))
@@ -116,6 +123,7 @@ x ∨ y
 Implies
 ====
 
+___
 x -> y
 x => y
 x → y
@@ -134,6 +142,7 @@ x ⇒ y
 Iff
 ====
 
+___
 x <-> y
 x <=> y
 x ↔ y
@@ -154,6 +163,7 @@ x ≡ y
 Forall
 ====
 
+___
 A x . A(x)
 ∀ x . x
 
@@ -171,6 +181,7 @@ A x . A(x)
 Exists
 ====
 
+___
 E x . E(x)
 ∃ x . x
 

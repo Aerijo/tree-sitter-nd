@@ -2,6 +2,7 @@
 Not
 ====
 
+___
 --x
 
 ---
@@ -15,6 +16,7 @@ Not
 And
 ====
 
+___
 a ^ b ^ c
 
 ---
@@ -32,6 +34,7 @@ a ^ b ^ c
 Or
 ====
 
+___
 a _ b _ c
 
 ---
@@ -49,6 +52,7 @@ a _ b _ c
 Implies
 ====
 
+___
 a -> b -> c
 
 ---
@@ -66,6 +70,7 @@ a -> b -> c
 Iff
 ====
 
+___
 a <-> b <-> c
 
 ---
@@ -83,6 +88,7 @@ a <-> b <-> c
 Forall
 ====
 
+___
 A x . A y . x
 A x x ^ A y y
 A x A y y ^ z
@@ -116,8 +122,8 @@ A x A y y ^ z
 Exists
 ====
 
+___
 E x . E y . x
-
 E x E y x
 
 ---
@@ -141,6 +147,7 @@ E x E y x
 Not & And
 ====
 
+___
 -a ^ b
 a ^ -b
 
@@ -161,9 +168,9 @@ a ^ -b
 And & Or
 ====
 
+___
 a ^ b _ c
 a _ b ^ c
-
 a ^ b _ c ^ d
 a _ b ^ c _ d
 
@@ -194,9 +201,9 @@ a _ b ^ c _ d
 Or & Implies
 ====
 
+___
 a _ b -> c
 a -> b _ c
-
 a _ b -> c _ d
 a -> b _ c -> d
 
@@ -226,9 +233,9 @@ a -> b _ c -> d
 Implies & Iff
 ====
 
+___
 a -> b <-> c
 a <-> b -> c
-
 a -> b <-> c -> d
 a <-> b -> c <-> d
 
@@ -259,12 +266,11 @@ a <-> b -> c <-> d
 Iff & Forall
 ====
 
+___
 a <-> A x . x
 A x . x <-> a
-
 A x . x <-> A y . y
 x <-> A y . y <-> x
-
 A x x <-> a
 
 ---
@@ -300,6 +306,7 @@ A x x <-> a
 Not & Forall
 ====
 
+___
 -A x -x
 
 ---
