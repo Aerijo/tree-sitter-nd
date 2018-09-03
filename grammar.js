@@ -45,7 +45,13 @@ module.exports = grammar({
       // '\n'
     ),
 
-    guard: $ => seq('[', repeat($.variable), ']'),
+    guard: $ => seq('[', optional($.vars), ']'),
+
+    vars: $ => seq(
+      $.variable,
+      repeat(seq(',', $.variable)),
+      optional(',')
+    ),
 
     hypothesis: $ => repeat1(seq($.expression, '\n')),
 

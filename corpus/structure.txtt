@@ -47,3 +47,53 @@ z
 
 (block
   (expression (variable)))
+
+
+====
+Single guard
+====
+
+[a]
+___
+z
+
+---
+
+(block
+  (guard (vars (variable)))
+  (expression (variable)))
+
+
+====
+Multiple guards
+====
+
+[a, b, c,]
+___
+z
+
+---
+
+(block
+  (guard (vars (variable) (variable) (variable)))
+  (expression (variable)))
+
+
+====
+Multiple guards with Multiple hypothesis
+====
+
+[a, b, c,]
+p
+q
+___
+z
+
+---
+
+(block
+  (guard (vars (variable) (variable) (variable)))
+  (hypothesis
+    (expression (variable))
+    (expression (variable)))
+  (expression (variable)))
