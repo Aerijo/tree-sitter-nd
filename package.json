@@ -15,6 +15,9 @@
   "license": "MIT",
   "name": "tree-sitter-nd",
   "description": "Plain text ND syntax (Fitch style)",
+  "dependencies": {
+    "nan": "^2.11.0"
+  },
   "devDependencies": {
     "tree-sitter-cli": "^0.13.8"
   },
