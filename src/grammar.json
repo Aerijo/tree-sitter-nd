@@ -2,6 +2,18 @@
   "name": "nd",
   "word": "variable",
   "rules": {
+    "proof": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        },
+        {
+          "type": "BLANK"
+        }
+      ]
+    },
     "block": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -9,16 +21,11 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "guard"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "guard"
+            }
           },
           {
             "type": "CHOICE",
@@ -49,10 +56,6 @@
             "content": {
               "type": "CHOICE",
               "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "comment"
-                },
                 {
                   "type": "SEQ",
                   "members": [
@@ -874,6 +877,10 @@
         {
           "type": "STRING",
           "value": "."
+        },
+        {
+          "type": "STRING",
+          "value": "$"
         }
       ]
     }

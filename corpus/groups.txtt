@@ -6,13 +6,13 @@ Parentheses
 
 ---
 
-(block
+(proof (block
   (expression
     (implies
       (implies
         (variable)
         (variable))
-      (variable))))
+      (variable)))))
 
 
 ====
@@ -25,7 +25,7 @@ a ^ . b ^ . - c
 
 ---
 
-(block
+(proof (block
   (expression
     (and
       (variable)
@@ -45,4 +45,4 @@ a ^ . b ^ . - c
       (variable)
       (and
         (variable)
-        (not (variable))))))
+        (not (variable)))))))

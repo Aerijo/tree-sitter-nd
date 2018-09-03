@@ -1,3 +1,8 @@
+#  This proof contains consecutive nested blocks.
+#  This was a large reason why indentation based nested
+#  blocks was decided against, in favour of {...}
+
+
 q v -q
 ___
 {

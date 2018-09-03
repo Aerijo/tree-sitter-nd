@@ -7,9 +7,9 @@ var_name_1_
 
 ---
 
-(block
+(proof (block
   (expression (variable))
-  (expression (variable)))
+  (expression (variable))))
 
 
 ====
@@ -24,7 +24,7 @@ F(x)
 
 ---
 
-(block
+(proof (block
   (expression (function (function_name) (variable)))
   (expression (function (function_name)))
   (expression
@@ -34,7 +34,7 @@ F(x)
         (variable)
         (function (function_name) (variable)))))
   (expression (function (function_name) (variable)))
-  (expression (function (function_name) (variable))))
+  (expression (function (function_name) (variable)))))
 
 
 ====
@@ -50,13 +50,13 @@ F
 
 ---
 
-(block
+(proof (block
   (expression (true))
   (expression (true))
   (expression (true))
   (expression (false))
   (expression (false))
-  (expression (false)))
+  (expression (false))))
 
 
 ====
@@ -71,12 +71,12 @@ Not
 
 ---
 
-(block
+(proof (block
   (expression (not (variable)))
   (expression (not (variable)))
   (expression (not (variable)))
   (expression (not (variable)))
-  (expression (not (not (variable)))))
+  (expression (not (not (variable))))))
 
 
 ====
@@ -89,10 +89,10 @@ x ∧ y
 
 ---
 
-(block
+(proof (block
   (expression (and (variable) (variable)))
   (expression (and (variable) (variable)))
-  (expression (and (variable) (variable))))
+  (expression (and (variable) (variable)))))
 
 
 ====
@@ -106,11 +106,11 @@ x ∨ y
 
 ---
 
-(block
+(proof (block
   (expression (or (variable) (variable)))
   (expression (or (variable) (variable)))
   (expression (or (variable) (variable)))
-  (expression (or (variable) (variable))))
+  (expression (or (variable) (variable)))))
 
 
 ====
@@ -124,11 +124,11 @@ x ⇒ y
 
 ---
 
-(block
+(proof (block
   (expression (implies (variable) (variable)))
   (expression (implies (variable) (variable)))
   (expression (implies (variable) (variable)))
-  (expression (implies (variable) (variable))))
+  (expression (implies (variable) (variable)))))
 
 
 ====
@@ -143,12 +143,12 @@ x ≡ y
 
 ---
 
-(block
+(proof (block
   (expression (iff (variable) (variable)))
   (expression (iff (variable) (variable)))
   (expression (iff (variable) (variable)))
   (expression (iff (variable) (variable)))
-  (expression (iff (variable) (variable))))
+  (expression (iff (variable) (variable)))))
 
 
 ====
@@ -160,12 +160,12 @@ A x . A(x)
 
 ---
 
-(block
+(proof (block
   (expression
     (forall
       (variable)
       (function (function_name) (variable))))
-  (expression (forall (variable) (variable))))
+  (expression (forall (variable) (variable)))))
 
 
 ====
@@ -177,9 +177,9 @@ E x . E(x)
 
 ---
 
-(block
+(proof (block
   (expression
     (exists
       (variable)
       (function (function_name) (variable))))
-  (expression (exists (variable) (variable))))
+  (expression (exists (variable) (variable)))))

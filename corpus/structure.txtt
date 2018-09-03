@@ -8,10 +8,10 @@ q
 
 ---
 
-(block
+(proof (block
   (hypothesis
     (expression (variable)))
-  (expression (variable)))
+  (expression (variable))))
 
 
 ====
@@ -27,13 +27,13 @@ z
 
 ---
 
-(block
+(proof (block
   (hypothesis
     (expression (variable))
     (expression (variable))
     (expression (variable))
     (expression (variable)))
-  (expression (variable)))
+  (expression (variable))))
 
 
 ====
@@ -45,8 +45,8 @@ z
 
 ---
 
-(block
-  (expression (variable)))
+(proof (block
+  (expression (variable))))
 
 
 ====
@@ -59,24 +59,27 @@ z
 
 ---
 
-(block
+(proof (block
   (guard (vars (variable)))
-  (expression (variable)))
+  (expression (variable))))
 
 
 ====
 Multiple guards
 ====
 
-[a, b, c,]
+[a, b, c,][d]
+[e]
 ___
 z
 
 ---
 
-(block
+(proof (block
   (guard (vars (variable) (variable) (variable)))
-  (expression (variable)))
+  (guard (vars (variable)))
+  (guard (vars (variable)))
+  (expression (variable))))
 
 
 ====
@@ -91,9 +94,9 @@ z
 
 ---
 
-(block
+(proof (block
   (guard (vars (variable) (variable) (variable)))
   (hypothesis
     (expression (variable))
     (expression (variable)))
-  (expression (variable)))
+  (expression (variable))))

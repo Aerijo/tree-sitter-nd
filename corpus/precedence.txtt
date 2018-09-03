@@ -6,9 +6,9 @@ Not
 
 ---
 
-(block
+(proof (block
   (expression
-    (not (not (variable)))))
+    (not (not (variable))))))
 
 
 ====
@@ -19,13 +19,13 @@ a ^ b ^ c
 
 ---
 
-(block
+(proof (block
   (expression
     (and
       (and
         (variable)
         (variable))
-      (variable))))
+      (variable)))))
 
 
 ====
@@ -36,13 +36,13 @@ a _ b _ c
 
 ---
 
-(block
+(proof (block
   (expression
     (or
       (or
         (variable)
         (variable))
-      (variable))))
+      (variable)))))
 
 
 ====
@@ -53,13 +53,13 @@ a -> b -> c
 
 ---
 
-(block
+(proof (block
   (expression
     (implies
       (variable)
       (implies
         (variable)
-        (variable)))))
+        (variable))))))
 
 
 ====
@@ -70,13 +70,13 @@ a <-> b <-> c
 
 ---
 
-(block
+(proof (block
   (expression
     (iff
       (variable)
       (iff
         (variable)
-        (variable)))))
+        (variable))))))
 
 
 ====
@@ -89,7 +89,7 @@ A x A y y ^ z
 
 ---
 
-(block
+(proof (block
   (expression
     (forall
       (variable)
@@ -109,7 +109,7 @@ A x A y y ^ z
       (forall
         (variable)
         (forall (variable) (variable)))
-      (variable))))
+      (variable)))))
 
 
 ====
@@ -121,7 +121,7 @@ E x E y x
 
 ---
 
-(block
+(proof (block
   (expression
     (exists
       (variable)
@@ -133,7 +133,7 @@ E x E y x
       (variable)
       (exists
         (variable)
-        (variable)))))
+        (variable))))))
 
 
 ====
@@ -145,7 +145,7 @@ a ^ -b
 
 ---
 
-(block
+(proof (block
   (expression
     (and
       (not (variable))
@@ -153,7 +153,7 @@ a ^ -b
   (expression
     (and
       (variable)
-      (not (variable)))))
+      (not (variable))))))
 
 
 ====
@@ -167,7 +167,7 @@ a _ b ^ c _ d
 
 ---
 
-(block
+(proof (block
   (expression
     (or
       (and (variable) (variable))
@@ -185,7 +185,7 @@ a _ b ^ c _ d
       (or
         (variable)
         (and (variable) (variable)))
-      (variable))))
+      (variable)))))
 
 
 ====
@@ -199,7 +199,7 @@ a -> b _ c -> d
 
 ---
 
-(block
+(proof (block
   (expression
     (implies
       (or (variable) (variable))
@@ -217,7 +217,7 @@ a -> b _ c -> d
       (variable)
       (implies
         (or (variable) (variable))
-        (variable)))))
+        (variable))))))
 
 ====
 Implies & Iff
@@ -230,7 +230,7 @@ a <-> b -> c <-> d
 
 ---
 
-(block
+(proof (block
   (expression
     (iff
       (implies (variable) (variable))
@@ -248,7 +248,7 @@ a <-> b -> c <-> d
       (variable)
       (iff
         (implies (variable) (variable))
-        (variable)))))
+        (variable))))))
 
 
 ====
@@ -263,7 +263,7 @@ A x x <-> a
 
 ---
 
-(block
+(proof (block
   (expression
     (iff
       (variable)
@@ -287,7 +287,7 @@ A x x <-> a
   (expression
     (iff
       (forall (variable) (variable))
-      (variable))))
+      (variable)))))
 
 
 ====
@@ -298,7 +298,7 @@ Not & Forall
 
 ---
 
-(block
+(proof (block
   (expression
     (not
-      (forall (variable) (not (variable))))))
+      (forall (variable) (not (variable)))))))

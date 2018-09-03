@@ -7,11 +7,12 @@ x ^ y # comment
 
 ---
 
-(block
+(proof
   (comment)
+  (block
   (expression
     (and (variable) (variable)))
-  (comment))
+  (comment)))
 
 
 ====
@@ -25,6 +26,6 @@ x ^ y
 
 ---
 
-(block
+(proof
   (comment)
   (comment))

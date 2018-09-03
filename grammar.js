@@ -31,14 +31,13 @@ module.exports = grammar({
   word: $ => $.variable,
 
   rules: {
-    // proof: $ => optional($.block), // will likely transition to this (at least move up from block)
+    proof: $ => optional($.block), // will likely transition to this (at least move up from block)
 
     block: $ => prec.right(seq(
-      optional($.guard),
+      repeat($.guard),
       optional($.hypothesis),
       optional($._hypothesis_end),
       repeat1(choice(
-        $.comment,
         seq($.expression, '\n'),
         $._nested_block
       ))),
@@ -107,7 +106,7 @@ module.exports = grammar({
 
     function: $ => prec.right(PREC.FUNCTION, choice(
       seq($.function_name, optional(seq('(', $._term, ')'))),
-      seq(alias($._TF_func_name, $.function_name), '(', $._term, ')') // allow T & F if explicity functions
+      seq(alias($._TF_func_name, $.function_name), '(', $._term, ')') // allow T & F if explicitly functions
     )),
 
     not: $ => prec.right(PREC.NOT,
@@ -178,7 +177,7 @@ module.exports = grammar({
 
     _exists_sym: $ => choice('E', '\u{2203}'),
 
-    _universal_sep: $ => choice('.')
+    _universal_sep: $ => choice('.', '$') // good ol' Haskell
 
   }
 });
