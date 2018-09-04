@@ -31,7 +31,7 @@ module.exports = grammar({
   word: $ => $.variable,
 
   rules: {
-    proof: $ => optional($.block), // will likely transition to this (at least move up from block)
+    proof: $ => optional($.block),
 
     block: $ => prec.right(seq(
       repeat($.guard),
@@ -39,9 +39,10 @@ module.exports = grammar({
       optional($._hypothesis_end),
       repeat1(choice(
         seq($.expression, '\n'),
-        $._nested_block
-      ))),
-    ),
+        $._nested_block,
+        $.expression
+      ))
+    )),
 
     guard: $ => seq('[', optional($.vars), ']'),
 

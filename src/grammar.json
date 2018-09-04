@@ -72,6 +72,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "_nested_block"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "expression"
                 }
               ]
             }
