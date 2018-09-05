@@ -16,13 +16,18 @@
   "name": "tree-sitter-nd",
   "description": "Plain text ND syntax (Fitch style)",
   "dependencies": {
-    "nan": "^2.11.0"
+    "nan": "^2.11.0",
+    "prebuild-install": "^5.0.0"
   },
   "devDependencies": {
+    "prebuild": "^7.6.1",
     "tree-sitter-cli": "^0.13.8"
   },
   "scripts": {
     "build": "tree-sitter generate && node-gyp build",
+    "install": "prebuild-install || node-gyp rebuild",
+    "pre-build": "prebuild --all --strip --verbose",
+    "pre-build:upload": "prebuild --upload-all",
     "test": "tree-sitter test && tree-sitter parse examples -q -t"
   }
 }
