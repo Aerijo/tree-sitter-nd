@@ -60,7 +60,7 @@ z
 ---
 
 (proof (block
-  (guard (vars (variable)))
+  (guard (variable))
   (expression (variable))))
 
 
@@ -76,9 +76,9 @@ z
 ---
 
 (proof (block
-  (guard (vars (variable) (variable) (variable)))
-  (guard (vars (variable)))
-  (guard (vars (variable)))
+  (guard (variable) (variable) (variable))
+  (guard (variable))
+  (guard (variable))
   (expression (variable))))
 
 
@@ -95,7 +95,7 @@ z
 ---
 
 (proof (block
-  (guard (vars (variable) (variable) (variable)))
+  (guard (variable) (variable) (variable))
   (hypothesis
     (expression (variable))
     (expression (variable)))

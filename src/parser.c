@@ -68,7 +68,7 @@ enum {
   sym_block = 52,
   sym_guard = 53,
   sym_annotation = 54,
-  sym_vars = 55,
+  sym__vars = 55,
   sym_hypothesis = 56,
   sym__nested_block = 57,
   sym_expression = 58,
@@ -97,7 +97,7 @@ enum {
   aux_sym_block_repeat1 = 81,
   aux_sym_block_repeat2 = 82,
   aux_sym_annotation_repeat1 = 83,
-  aux_sym_vars_repeat1 = 84,
+  aux_sym__vars_repeat1 = 84,
   aux_sym_hypothesis_repeat1 = 85,
 };
 
@@ -157,7 +157,7 @@ static const char *ts_symbol_names[] = {
   [sym_block] = "block",
   [sym_guard] = "guard",
   [sym_annotation] = "annotation",
-  [sym_vars] = "vars",
+  [sym__vars] = "_vars",
   [sym_hypothesis] = "hypothesis",
   [sym__nested_block] = "_nested_block",
   [sym_expression] = "expression",
@@ -186,7 +186,7 @@ static const char *ts_symbol_names[] = {
   [aux_sym_block_repeat1] = "block_repeat1",
   [aux_sym_block_repeat2] = "block_repeat2",
   [aux_sym_annotation_repeat1] = "annotation_repeat1",
-  [aux_sym_vars_repeat1] = "vars_repeat1",
+  [aux_sym__vars_repeat1] = "_vars_repeat1",
   [aux_sym_hypothesis_repeat1] = "hypothesis_repeat1",
 };
 
@@ -411,8 +411,8 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_vars] = {
-    .visible = true,
+  [sym__vars] = {
+    .visible = false,
     .named = true,
   },
   [sym_hypothesis] = {
@@ -527,7 +527,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = false,
   },
-  [aux_sym_vars_repeat1] = {
+  [aux_sym__vars_repeat1] = {
     .visible = false,
     .named = false,
   },
@@ -2729,7 +2729,7 @@ static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_12] = ACTIONS(39),
   },
   [2] = {
-    [sym_vars] = STATE(28),
+    [sym__vars] = STATE(28),
     [anon_sym_RBRACK] = ACTIONS(41),
     [sym_comment] = ACTIONS(11),
     [sym_variable] = ACTIONS(43),
@@ -3552,7 +3552,7 @@ static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_12] = ACTIONS(167),
   },
   [27] = {
-    [aux_sym_vars_repeat1] = STATE(81),
+    [aux_sym__vars_repeat1] = STATE(81),
     [anon_sym_RBRACK] = ACTIONS(171),
     [anon_sym_COMMA] = ACTIONS(173),
     [sym_comment] = ACTIONS(11),
@@ -5062,7 +5062,7 @@ static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
     [sym_variable] = ACTIONS(374),
   },
   [81] = {
-    [aux_sym_vars_repeat1] = STATE(150),
+    [aux_sym__vars_repeat1] = STATE(150),
     [anon_sym_RBRACK] = ACTIONS(372),
     [anon_sym_COMMA] = ACTIONS(376),
     [sym_comment] = ACTIONS(11),
@@ -7236,7 +7236,7 @@ static uint16_t ts_parse_table[STATE_COUNT][SYMBOL_COUNT] = {
     [sym_variable] = ACTIONS(374),
   },
   [150] = {
-    [aux_sym_vars_repeat1] = STATE(150),
+    [aux_sym__vars_repeat1] = STATE(150),
     [anon_sym_RBRACK] = ACTIONS(544),
     [anon_sym_COMMA] = ACTIONS(548),
     [sym_comment] = ACTIONS(11),
@@ -9806,7 +9806,7 @@ static TSParseActionEntry ts_parse_actions[] = {
   [165] = {.count = 1, .reusable = true}, REDUCE(sym_block, 1),
   [167] = {.count = 1, .reusable = true}, REDUCE(sym_guard, 2),
   [169] = {.count = 1, .reusable = false}, REDUCE(sym_guard, 2),
-  [171] = {.count = 1, .reusable = true}, REDUCE(sym_vars, 1),
+  [171] = {.count = 1, .reusable = true}, REDUCE(sym__vars, 1),
   [173] = {.count = 1, .reusable = true}, SHIFT(80),
   [175] = {.count = 1, .reusable = true}, SHIFT(82),
   [177] = {.count = 1, .reusable = true}, SHIFT(83),
@@ -9899,7 +9899,7 @@ static TSParseActionEntry ts_parse_actions[] = {
   [363] = {.count = 2, .reusable = true}, REDUCE(aux_sym_block_repeat2, 2), SHIFT_REPEAT(32),
   [366] = {.count = 2, .reusable = true}, REDUCE(aux_sym_block_repeat2, 2), SHIFT_REPEAT(33),
   [369] = {.count = 2, .reusable = true}, REDUCE(aux_sym_block_repeat2, 2), SHIFT_REPEAT(34),
-  [372] = {.count = 1, .reusable = true}, REDUCE(sym_vars, 2),
+  [372] = {.count = 1, .reusable = true}, REDUCE(sym__vars, 2),
   [374] = {.count = 1, .reusable = true}, SHIFT(148),
   [376] = {.count = 1, .reusable = true}, SHIFT(149),
   [378] = {.count = 1, .reusable = true}, REDUCE(sym_guard, 3),
@@ -9982,9 +9982,9 @@ static TSParseActionEntry ts_parse_actions[] = {
   [538] = {.count = 1, .reusable = false}, REDUCE(sym_forall, 3),
   [540] = {.count = 1, .reusable = true}, REDUCE(sym_exists, 3),
   [542] = {.count = 1, .reusable = false}, REDUCE(sym_exists, 3),
-  [544] = {.count = 1, .reusable = true}, REDUCE(aux_sym_vars_repeat1, 2),
-  [546] = {.count = 1, .reusable = true}, REDUCE(sym_vars, 3),
-  [548] = {.count = 2, .reusable = true}, REDUCE(aux_sym_vars_repeat1, 2), SHIFT_REPEAT(201),
+  [544] = {.count = 1, .reusable = true}, REDUCE(aux_sym__vars_repeat1, 2),
+  [546] = {.count = 1, .reusable = true}, REDUCE(sym__vars, 3),
+  [548] = {.count = 2, .reusable = true}, REDUCE(aux_sym__vars_repeat1, 2), SHIFT_REPEAT(201),
   [551] = {.count = 1, .reusable = false}, SHIFT(202),
   [553] = {.count = 1, .reusable = false}, SHIFT(203),
   [555] = {.count = 1, .reusable = false}, SHIFT(205),

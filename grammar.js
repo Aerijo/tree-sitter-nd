@@ -44,14 +44,14 @@ module.exports = grammar({
       ))
     )),
 
-    guard: $ => seq('[', optional($.vars), ']'),
+    guard: $ => seq('[', optional($._vars), ']'),
 
     annotation: $ => seq('@', repeat(choice(
       /[^<#\n]+/,
       seq('<', /[^>]*/, '>')
     ))),
 
-    vars: $ => seq(
+    _vars: $ => seq(
       $.variable,
       repeat(seq(',', $.variable)),
       optional(',')

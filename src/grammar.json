@@ -95,7 +95,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "vars"
+              "name": "_vars"
             },
             {
               "type": "BLANK"
@@ -146,7 +146,7 @@
         }
       ]
     },
-    "vars": {
+    "_vars": {
       "type": "SEQ",
       "members": [
         {
