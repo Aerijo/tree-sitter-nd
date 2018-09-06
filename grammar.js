@@ -34,7 +34,7 @@ module.exports = grammar({
     proof: $ => optional($.block),
 
     block: $ => prec.right(seq(
-      repeat($.guard),
+      repeat($.guard), // are multple guards ever legal?
       optional($.hypothesis),
       optional($._hypothesis_end),
       repeat1(choice(
